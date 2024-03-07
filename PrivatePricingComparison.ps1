@@ -60,10 +60,10 @@ if ($differences.Count -gt 0) {
     $uniqueDifferences = @()
     $differences | ForEach-Object {
         $row = $_
-        $sourceFile = if ($dataToday -contains $row) {
-            $todayFile.Name
-        } elseif ($dataYesterday -contains $row) {
+        $sourceFile = if ($row.SideIndicator -eq "<=") {
             $yesterdayFile.Name
+        } elseif ($row.SideIndicator -eq "=>") {
+            $todayFile.Name
         } else {
             "Unknown"
         }
@@ -88,14 +88,17 @@ if ($differences.Count -gt 0) {
     Write-Host "No differences found. No file saved in the Differences folder."
 }
 
-	# Define the email parameters
-	$emailFrom = "alsmith1@vailresorts.com"
-	$emailTo = "alsmith1@vailresorts.com"
-	$emailSubject = "$dateString $($file.BaseName)"
-	$emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)"
+# Define the email parameters
+$emailFrom = "alsmith1@vailresorts.com"
+$emailTo = "alsmith1@vailresorts.com"
+$emailSubject = "$dateString $($file.BaseName)"
+$emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)"
 
-	# Send the email with the excel file attached
-	Send-MailMessage -From $emailFrom -To $emailTo -Subject $emailSubject -Body $emailBody -Attachments $resultsFilePath -SmtpServer "smtp.vailresorts.com"
+# Define the path to the CSV file you want to attach
+$attachmentPath = $csvPath  # Assuming you want to attach the CSV generated earlier
+
+# Send the email with the excel file attached
+Send-MailMessage -From $emailFrom -To $emailTo -Subject $emailSubject -Body $emailBody -Attachments $attachmentPath -SmtpServer "smtp.vailresorts.com"
 
 # Debugging statements
 Write-Host "Number of differences: $($differences.Count)"
