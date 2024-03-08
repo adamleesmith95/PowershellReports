@@ -1,13 +1,8 @@
-# Install the Import-Excel module if you haven't already
-# Install-Module -Name ImportExcel -Force -Scope CurrentUser
-
 # Define the folder paths
 $todayFolderPath = "C:\Users\alsmith1\Desktop\PowershellScripts\Privates\Today"
 $yesterdayFolderPath = "C:\Users\alsmith1\Desktop\PowershellScripts\Privates\Yesterday"
 $outputFolderPath = "C:\Users\alsmith1\Desktop\PowershellScripts\Privates\Differences"
 $previousOutputFolderPath = "C:\Users\alsmith1\Desktop\PowershellScripts\Privates\Previous Differences"
-
-# Define additional folder paths
 $previousComparedFolderPath = "C:\Users\alsmith1\Desktop\PowershellScripts\Privates\Previous Compared"
 $folderToMoveToToday = "C:\Users\alsmith1\Desktop\PowershellScripts\SqlFiles\PrivateRateIncrease"
 
@@ -45,11 +40,27 @@ Get-ChildItem -Path $outputFolderPath | Move-Item -Destination $previousOutputFo
 # Load the Import-Excel module
 Import-Module ImportExcel
 
+# Reload file paths after moving
+$yesterdayFile = Get-ChildItem -Path $yesterdayFolderPath -Filter *.xlsx | Select-Object -First 1
+$todayFile = Get-ChildItem -Path $todayFolderPath -Filter *.xlsx | Select-Object -First 1
+
+# Debugging: Output the file names being compared
+Write-Host "Yesterday File: $($yesterdayFile.FullName)"
+Write-Host "Today File: $($todayFile.FullName)"
+
 # Load data from the "Today" Excel file
-$dataToday = Import-Excel -Path $todayFolderPath\*.xlsx
+$dataToday = Import-Excel -Path $todayFile.FullName
+
+# Debugging: Output the contents of the "Today" Excel file
+Write-Host "Today File Contents:"
+$dataToday | Format-Table
 
 # Load data from the "Yesterday" Excel file
-$dataYesterday = Import-Excel -Path $yesterdayFolderPath\*.xlsx
+$dataYesterday = Import-Excel -Path $yesterdayFile.FullName
+
+# Debugging: Output the contents of the "Yesterday" Excel file
+Write-Host "Yesterday File Contents:"
+$dataYesterday | Format-Table
 
 # Compare the two datasets and find differences
 $differences = Compare-Object $dataYesterday $dataToday -Property DisplayCategory, ProductHeaderCode, ProductHeader, PHOrder, effective_date, price, sale_location_code, SaleLoc -PassThru
