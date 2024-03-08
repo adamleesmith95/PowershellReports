@@ -1,0 +1,26 @@
+# Ignore temporary files
+150-LinkedProduct-InvProduct/
+150-LinkedProductInfoMissing/
+Archive/
+BLD-RevenueRecognitionMismatch/
+DefCalExpired/
+ExemptionCID-WB/
+LinkedInventoryEmailer/
+MM_WizardPHC/
+NULL-DefCals/
+Privates/
+SqlFiles/AccessBarcodes/
+SqlFiles/BLD-RevenueRecognitionMismatch/
+SqlFiles/DefCalExpired/
+SqlFiles/DispCatsOver500/
+SqlFiles/ExcludedTaxCodes/
+SqlFiles/InvPoolsWithMultipleInvLocs/
+SqlFiles/MM_WizardPHC/
+SqlFiles/PrivateRateIncrease/
+SqlFiles/VRRDuplicateMapping/
+SqlFiles/zzzArchive/
+VRRDuplicateMapping/
+_old/
+exit
+
+# Ignore log files
