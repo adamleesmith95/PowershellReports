@@ -102,8 +102,10 @@ if ($differences.Count -gt 0) {
 # Define the email parameters
 $emailFrom = "alsmith1@vailresorts.com"
 $emailTo = "alsmith1@vailresorts.com"
-$emailSubject = "$dateString $($file.BaseName)"
-$emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)"
+$emailSubject = "$timestamp PrivateRateDifferences.csv"
+$emailBody = "Daily PrivateRateDifferences - $($differences.Count)"
+# $emailSubject = "$dateString $($file.BaseName)" -- line not referencing any variables in the above script
+# $emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)" -- line not referencing any variables in the above script
 
 # Define the path to the CSV file you want to attach
 $attachmentPath = $csvPath  # Assuming you want to attach the CSV generated earlier
