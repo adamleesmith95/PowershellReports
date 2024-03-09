@@ -63,7 +63,7 @@ Write-Host "Yesterday File Contents:"
 $dataYesterday | Format-Table
 
 # Compare the two datasets and find differences
-$differences = Compare-Object $dataYesterday $dataToday -Property DisplayCategory, ProductHeaderCode, ProductHeader, PHOrder, effective_date, price, sale_location_code, SaleLoc -PassThru
+$differences = Compare-Object $dataYesterday $dataToday -Property DisplayCategory, ProductHeaderCode, ProductHeader, PHOrder, PricingSeasonCode, effective_date, price, sale_location_code, SaleLoc -PassThru
 
 # Check if there are differences
 if ($differences.Count -gt 0) {
