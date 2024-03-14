@@ -102,7 +102,7 @@ if ($differences.Count -gt 0) {
 # Define the email parameters
 $emailFrom = "alsmith1@vailresorts.com"
 $emailTo = "alsmith1@vailresorts.com"
-$emailSubject = "$timestamp PrivateRateDifferences.csv"
+$emailSubject = "$timestamp PrivateRateDifferences"
 $emailBody = "Daily PrivateRateDifferences - $($differences.Count)"
 # $emailSubject = "$dateString $($file.BaseName)" -- line not referencing any variables in the above script
 # $emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)" -- line not referencing any variables in the above script
@@ -117,5 +117,5 @@ Send-MailMessage -From $emailFrom -To $emailTo -Subject $emailSubject -Body $ema
 Write-Host "Number of differences: $($differences.Count)"
 
 # Add a pause at the end
-Write-Host "Press Enter to continue..."
-$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+#Write-Host "Press Enter to continue..."
+#$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
