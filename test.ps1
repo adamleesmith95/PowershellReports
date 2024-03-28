@@ -65,6 +65,7 @@ foreach ($file in $files)
 	# Define the email parameters
 	$emailFrom = "alsmith1@vailresorts.com"
 	$emailTo = "alsmith1@vailresorts.com"
+    # $emailTo = "229b4e4c.vailresorts.onmicrosoft.com@amer.teams.ms" # Email address for Daily Reports Teams channel
 	$emailSubject = "$dateString $($file.BaseName)"
 	$emailBody = "Daily $($file.BaseName) - $($DataTable.Rows.Count)"
 
